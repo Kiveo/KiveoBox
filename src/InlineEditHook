@@ -1,14 +1,26 @@
+/*
+ <span className="dib fr mt1">
+            <span
+              className="bg-near-white pa1 green br2 b ba b--silver pointer"
+              onClick={this.handleClickOutside}
+              role="button"
+              tabIndex={0}
+              onKeyPress={this.handleClickOutside}
+            >
+              &#10003;
+            </span>
+            <span
+              className="bg-near-white ml1 pa1 br2 red b ba b--silver"
+              onClick={this.revertChanges}
+              role="button"
+              tabIndex={0}
+              onKeyPress={this.revertChanges}
+            >
+              &#10007;
+            </span>
+          </span>
 
- const inputEl = useRef(null);
-  const onButtonClick = () => {
-    // `current` points to the mounted text input element
-    inputEl.current.focus();
-  };
-  return (
-    <>
-      <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>Focus the input</button>
-
+*/
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
