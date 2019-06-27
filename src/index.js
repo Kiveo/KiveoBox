@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import SassComponent from "./components/SassComponent";
-import "./styles.css";
+// import "./styles.css";
 
 function App() {
   return (

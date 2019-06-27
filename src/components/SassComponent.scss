@@ -1,0 +1,79 @@
+// IMPORTS PARTIALS: _partial.scss @import "name"
+@import "../partial";
+
+// VARIABLES
+$background-color: #ffeeff;
+$primary-color: #ff5500;
+$secondary-color: #ff00ff;
+$primary-font: sans-serif, 'cursive';
+
+// MIXIN
+@mixin tranformer($prop1, $prop2) {
+  width: $prop1;
+  height: $prop2;
+  background-color: lightgreen;
+  transform: rotate(20deg) scale(1.5);
+}
+
+.SassComponent {
+  background: $background-color;
+  font-family: $primary-font;
+  
+  .SassComponent-header {
+    color: $secondary-color
+  }
+
+  .SassComponent-paragraph {
+    color: $primary-color;
+    span {
+      border-left: 0.5em dotted blueviolet;
+    }
+  }
+
+  .SassComponent-span {
+    color: purple;
+  }
+
+  li:nth-child(2) {
+    @include tranformer(10px, 30px)
+  }
+}
+
+// EXTEND
+%extend-border {
+  border: 2px solid darkcyan;
+  padding: 5px;
+  color: darkolivegreen;
+}
+%diff-extend {
+  border-top: 5px;
+}
+.special {
+  border-right: 5px;
+  @extend %extend-border;
+  @extend %diff-extend;
+}
+
+// Psuedo Selector
+.element {
+  color: orangered;
+  &:hover {
+    color: rgb(51, 153, 73);
+  }
+}
+
+// OPERATORS ...
+.samples {
+  font-size: 1em;
+  &::after {
+    content: "\<span>\Hello<span>";
+    font-size: 1em + 0.5;
+  }
+}
+
+button {
+  color: teal;
+  &::last-of-type {
+    color: red;
+  }
+}
