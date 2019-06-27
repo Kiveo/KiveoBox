@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./SassComponent.scss";
 // import PropTypes from "prop-types";
@@ -58,3 +59,4 @@ SassComponent.propTypes = {
 };
 
 export default SassComponent;
+

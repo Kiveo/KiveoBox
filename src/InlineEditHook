@@ -1,0 +1,104 @@
+/*
+ <span className="dib fr mt1">
+            <span
+              className="bg-near-white pa1 green br2 b ba b--silver pointer"
+              onClick={this.handleClickOutside}
+              role="button"
+              tabIndex={0}
+              onKeyPress={this.handleClickOutside}
+            >
+              &#10003;
+            </span>
+            <span
+              className="bg-near-white ml1 pa1 br2 red b ba b--silver"
+              onClick={this.revertChanges}
+              role="button"
+              tabIndex={0}
+              onKeyPress={this.revertChanges}
+            >
+              &#10007;
+            </span>
+          </span>
+
+*/
+
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+// -- CSS -- (Should be extracted or altered to accept classes from props)
+const styles = {
+  focusStyle: {
+    borderStyle: 'groove',
+    borderWidth: '1px',
+    // borderColor: '#E8E8E8'
+    borderColor: '#FFFF00'
+  },
+  blurStyle: { border: '1px solid transparent' }
+}
+
+/* 
+| -- COMPONENT --
+*/
+const InlineEditHook = ({ initialValue, handleChange, handleConfirm, handleRevert }) => {
+  // -- STATE & HOOKS --
+  const [storedValue, setStoredValue] = useState();
+  const [newValue, setNewValue] = useState();
+  const [focusState, setFocusState] = useState(false);
+
+  useEffect(() => {
+    setStoredValue(initialValue);
+  }, []);
+
+// TODO think about how to revert changes on ui
+  useEffect(() => {
+    setNewValue(storedValue);
+  }, [storedValue])
+
+  // -- HANDLERS --
+  const handleChangeEvent =(e) => {
+    setNewValue(e.target.value);
+    handleChange &&
+    handleChange(e.target.value);
+  }
+  
+  const handleConfirmEvent = () => {
+    handleConfirm(newValue)
+  };
+
+  const handleRevertEvent = () => {
+    // console.log(`initial value was: ${storedValue}`);
+    handleRevert(storedValue)
+    setStoredValue(storedValue)
+  };
+  
+  const handleFocus = () => {
+    setFocusState(!focusState)
+  }
+
+  // -- RENDER --
+  return (
+    <div className="div--edit">
+      <p>Input Field</p>
+      <input 
+        type="text" 
+        placeholder="Input..." 
+        onChange={handleChangeEvent} 
+        defaultValue={storedValue}
+        onFocus={handleFocus}
+        onBlur={handleFocus} 
+        style={focusState ? styles.focusStyle : styles.blurStyle}
+      />
+      <button onClick={handleConfirmEvent} type="button">Confirm</button>
+      <button onClick={handleRevertEvent} type="button">X</button>
+    </div>
+  );
+};
+
+InlineEditHook.propTypes = {
+  initialValue: PropTypes.string,
+  handleChange: PropTypes.func,
+  handleConfirm: PropTypes.func,
+  handleRevert: PropTypes.func,
+};
+
+export default InlineEditHook;
