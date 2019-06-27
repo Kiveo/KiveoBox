@@ -1,5 +1,7 @@
+// TODO Refactor to accomodate BEM
 // IMPORTS PARTIALS: _partial.scss @import "name"
 @import "../partial";
+// @import filter-gradient;
 
 // VARIABLES
 $background-color: #ffeeff;
@@ -18,24 +20,44 @@ $primary-font: sans-serif, 'cursive';
 .SassComponent {
   background: $background-color;
   font-family: $primary-font;
-  
-  .SassComponent-header {
+  // &-header === .SassComponent-header
+  &__header {
     color: $secondary-color
   }
-
-  .SassComponent-paragraph {
+  
+  // &-paragraph === .SassComponent-paragraph
+  &__paragraph {
     color: $primary-color;
     span {
       border-left: 0.5em dotted blueviolet;
     }
   }
-
-  .SassComponent-span {
+  
+  // &-span === .SassComponent-span
+  &__span {
     color: purple;
   }
-
+  
   li:nth-child(2) {
     @include tranformer(10px, 30px)
+  }
+  
+  &__button {
+    background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
+    color: white;
+    &--active { 
+      height: 1.5em;
+      background: #333;
+      border: none;
+      font-size: 1.5em;
+      & span {
+      // color: lightseagreen;
+      background: -webkit-linear-gradient(green, lightcyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      }
+    }
   }
 }
 
@@ -68,12 +90,5 @@ $primary-font: sans-serif, 'cursive';
   &::after {
     content: "\<span>\Hello<span>";
     font-size: 1em + 0.5;
-  }
-}
-
-button {
-  color: teal;
-  &::last-of-type {
-    color: red;
   }
 }
