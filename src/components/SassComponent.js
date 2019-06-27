@@ -12,7 +12,7 @@ const SassComponent = props => {
       <h1>Sass Component Heading</h1>
       <p>Paragraph</p>
       <p>
-        A second Paragraph
+        {"A second Paragraph"}
         <span>Span inside p2</span>
       </p>
     </div>
